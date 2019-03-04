@@ -1,0 +1,2 @@
+# motifStackWorkshop
+workshop for motifStack
