@@ -7,7 +7,7 @@ Jianhong Ou <jianhong.ou@duke.edu>; Lihua Julie Zhu <Julie.Zhu@umassmed.edu>
 # Workshop Description
 
 A sequence motif is a short pattern for DNA, RNA or amino acid sequence with biological significance.
-The motifs are often represented as a matrices such as position weight matrix (PWM) and visualized as sequence logos.
+The motifs are often represented as a matrix such as position weight matrix (PWM) and visualized as sequence logos.
 The motifStack package is designed for graphic representation of multiple motifs as a phylogenetic tree.
 This tool faciliates the analysis of diversity or conservation of a group of transcription factor binding sites.
 This package has been well downloaded by researchers and cited in various journals. 
