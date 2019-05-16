@@ -1,0 +1,18 @@
+Package: motifStackWorkshop
+Type: Package
+Version: 0.0.1
+Title: motifStack: plot multiple motifs in one figure
+Authors@R: c(person(given="Jianhong", family="Ou", email="jianhong.ou@duke.edu", 
+        role=c("aut", "cre"), comment=c(ORCID="0000-0002-8652-2488")),
+        person("Lihua Julie Zhu", "Developer", role = "aut",
+        email = "Julie.Zhu@umassmed.edu"))
+Author: Jianhong Ou and Lihua Julie Zhu
+Maintainer: Jianhong Ou <jianhong.ou@duke.edu>
+Depends: R (>= 3.5.0), methods, motifStack
+Imports: graphics, utils
+Suggests: RUnit, BiocGenerics, MotifDb, universalmotif, knitr
+biocViews: SequenceMatching, Visualization, Sequencing, Microarray, Alignment, ChIPchip, ChIPSeq, MotifAnnotation, DataImport
+Description: The motifStackWorkshop package is a package for Bioc2019 to help people learn to use motifStack to represent multiple motifs with different similarity scores in one canvas.
+License: GPL (>= 2)
+Lazyload: yes
+VignetteBuilder: knitr

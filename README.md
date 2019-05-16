@@ -29,7 +29,6 @@ Users who are interested in graphic representation of multiple motifs. Participa
 
 _MotifDb_
 _motifStack_
-_universalmotif_
 
 ## Time outline
 
