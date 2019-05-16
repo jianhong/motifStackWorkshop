@@ -7,9 +7,12 @@ bibliography: ref.bib
 csl: nature.csl
 vignette: >
   %\VignetteIndexEntry{motifStack_workshop}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 output: 
+  pdf_document:
+    toc: yes
+    toc_depth: 4
   html_document:
     theme: simplex
     toc: true
