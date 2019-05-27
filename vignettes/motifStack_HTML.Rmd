@@ -3,8 +3,8 @@ title: "_motifStack_: plot multiple motifs in one figure"
 author: "Jianhong Ou, Michael H. Brodsky, Lihua Julie Zhu"
 date: "`r BiocStyle::doc_date()`"
 package: "`r BiocStyle::pkg_ver('motifStackWorkshop')`"
-bibliography: ref.bib
-csl: nature.csl
+bibliography: "`r system.file('vignettes', 'ref.bib', package = 'motifStackWorkshop')`"
+csl: "`r system.file('vignettes', 'nature.csl', package = 'motifStackWorkshop')`"
 vignette: >
   %\VignetteIndexEntry{motifStack_workshop}
   %\VignetteEncoding{UTF-8}
@@ -80,7 +80,7 @@ Please note that start from version 1.28.0, _motifStack_ does not require ghosts
 If version number is smaller than 1.28.0, you will need ghostscript. The full path to the executable must be available 
 for R session.
 
-In this tutorial, version number greater than 1.29.2 is required.
+In this tutorial, version number greater than 1.29.4 is required.
 
 ## Inputs of _motifStack_
 

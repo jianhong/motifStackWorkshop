@@ -8,7 +8,7 @@ Authors@R: c(person(given="Jianhong", family="Ou", email="jianhong.ou@duke.edu",
         email = "Julie.Zhu@umassmed.edu"))
 Author: Jianhong Ou and Lihua Julie Zhu
 Maintainer: Jianhong Ou <jianhong.ou@duke.edu>
-Depends: R (>= 3.5.0), methods, motifStack
+Depends: R (>= 3.5.0), methods, motifStack (>= 1.29.4)
 Imports: graphics, utils
 Suggests: RUnit, BiocGenerics, MotifDb, knitr, MotIV, RColorBrewer, ggplot2
 biocViews: SequenceMatching, Visualization, Sequencing, Microarray, Alignment, ChIPchip, ChIPSeq, MotifAnnotation, DataImport
