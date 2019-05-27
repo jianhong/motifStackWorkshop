@@ -33,7 +33,7 @@ opts_chunk$set(eval=TRUE, fig.width=6, fig.height=2, warning = FALSE, message = 
 extdata <- system.file("extdata", package = "motifStackWorkshop")
 ```
 
-# Introduction
+## Introduction
 
 A sequence motif is a short sequence conservation in multiple amino acid or nucleic acid sequences
 with biological significance such as DNA binding sites, where transcription factors (TFs) bind and catalytic sites in enzymes.
@@ -57,7 +57,7 @@ different groups of motifs.
 The _motifStack_ package[@ou2018motifstack] is designed for graphic representation of multiple motifs for their similarities or differences.
 It provides the flexibility for users to customize the graphic parameters such as the font family, colors, symbols, and highlight markers.
 
-# Installation
+## Installation
 
 _BiocManager_ is used to install stable version of _motifStack_.
 
@@ -82,7 +82,7 @@ for R session.
 
 In this tutorial, version number greater than 1.29.2 is required.
 
-# Inputs of _motifStack_
+## Inputs of _motifStack_
 
 The inputs of _motifStack_ are one or more motifs represented as PCM or PFM. The PFM format motifs are available in
 most of the motif databases such as TRANSFAC[@wingender2000transfac], JASPAR[@sandelin2004jaspar], CIS-BP[@weirauch2014determination] and HOCOMOCO[@kulakovskiy2017hocomoco]. More databases could be found at http://meme-suite.org/db/motifs.
@@ -131,7 +131,7 @@ motifStack(motifs)
 ```
 
 
-# Plot single sequence logo
+## Plot single sequence logo
 
 _motifStack_ can be used to plot DNA/RNA sequence logo, affinity logo and amino acid sequence log. 
 It provides the flexibility for users to customize the graphic parameters such as 
@@ -182,7 +182,7 @@ plot(motif, font="mono,Courier", fontface="plain")
 ```
 
 
-## Plot sequence logo with highlight markers
+### Plot sequence logo with highlight markers
 
 `markers` slot of `pfm` or `pcm` object can be assigned by a list of `marker` objects. 
 There are three type of markers, "rect", "line" and "text". 
@@ -203,7 +203,7 @@ plot(motif)
 ```
 
 
-# Plot motifs with ggplot2
+## Plot motifs with ggplot2
 
 Sequence logo could be plotted by `geom_motif` function which is compatible with _ggplot2_[@wickham2016ggplot2].
 
@@ -219,7 +219,7 @@ ggplot(df, aes(x=x, y=y, width=width, height=height, motif=motif)) +
 ```
 
 
-# Plot multiple sequence logos
+## Plot multiple sequence logos
 
 _motifStack_ is designed to visulize the alignment of multiple motifs and facilitate the analysis
 of binding site diversity/conservation within families of TFs and evolution of binding sites among
@@ -238,7 +238,7 @@ To get the sorted motifs for alignment, distances can be calculated using motifD
 (R implementation of STAMP[@mahony2007stamp]). 
 Distances generated from MatAlign[@zhao2012conserved] are also supported with a helper function `ade4::newick2phylog`[@dray2007ade4]. 
 
-## Plot sequence logo stack
+### Plot sequence logo stack
 
 As shown in above, `motifStack` function can be used to plot motifs as a stack of sequence logos easily.
 By setting the layout to phylog, `motifStack` will plot the stack of sequence logos with a linear tree.
@@ -322,7 +322,7 @@ motifPiles(phylog=phylog, pfms=pfms, pfms2=sig,
 ```
 
 
-## Plot sequence logo cloud
+### Plot sequence logo cloud
 
 To emphasize the weight of motif signatures, motif signatures can be plotted as a circular or rectanglular 
 word clouds with motif size representing the number of motifs that contributed to the signature. 
@@ -333,7 +333,7 @@ The larger the motif size, the larger the number of motifs within that motif sig
 motifCloud(motifSig, scale=c(6, .5), layout="cloud")
 ```
 
-## Plot sequence logo circos
+### Plot sequence logo circos
 
 The sequence logo clouds will loose the cluster information. 
 Plotting motifs as sequence logo circos is a good solution to visualize motif signatures with dendrogram.
@@ -370,10 +370,10 @@ motifCircos(phylog=phylog, pfms=pfms, pfms2=sig,
             angle=350, motifScale="logarithmic")
 ```
 
-# Session info
+## Session info
 
 ```{r}
 sessionInfo()
 ```
 
-# References
+## References
