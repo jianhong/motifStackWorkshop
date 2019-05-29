@@ -1,3 +1,16 @@
 language: r
 sudo: false
 r: bioc-devel
+r_packages: 
+  - methods
+  - graphics
+  - utils
+  - RUnit
+  - knitr
+  - RColorBrewer
+  - ggplot2
+bioc_packages:
+  - BiocGenerics
+  - motifStack
+  - MotifDb
+  - MotIV
