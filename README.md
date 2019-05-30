@@ -1,6 +1,4 @@
-# motifStack: plot multiple motifs in one figure
-
-[![build](https://travis-ci.com/jianhong/motifStackWorkshop.svg?branch=master)](https://travis-ci.com/jianhong/motifStackWorkshop)
+# motifStack: plot multiple motifs in one figure [![build](https://travis-ci.com/jianhong/motifStackWorkshop.svg?branch=master)](https://travis-ci.com/jianhong/motifStackWorkshop)
 
 # Instructor(s) name(s) and contact information
 
