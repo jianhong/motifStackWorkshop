@@ -1,4 +1,4 @@
 language: r
 sudo: false
 install:
- - R -e 'install.packages("BiocManager"); BiocManager::install(version = "3.10"); BiocManager::install(c("utils", "RUnit", "knitr", "RColorBrewer", "ggplot2", "BiocGenerics", "motifStack", "MotifDb", "MotIV"), version = "devel", ask = FALSE)'
+ - R -e 'install.packages("BiocManager"); BiocManager::install(version = "3.10", ask=FALSE); BiocManager::install(c("utils", "RUnit", "knitr", "RColorBrewer", "ggplot2", "BiocGenerics", "motifStack", "MotifDb", "MotIV"), version = "devel", ask = FALSE)'
