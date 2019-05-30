@@ -1,5 +1,7 @@
 # motifStack: plot multiple motifs in one figure
 
+[![build](https://travis-ci.com/jianhong/motifStackWorkshop.svg?branch=master)](https://travis-ci.com/jianhong/motifStackWorkshop)
+
 # Instructor(s) name(s) and contact information
 
 Jianhong Ou <jianhong.ou@duke.edu>; Lihua Julie Zhu <Julie.Zhu@umassmed.edu>
