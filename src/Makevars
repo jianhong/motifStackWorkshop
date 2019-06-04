@@ -1,0 +1,51 @@
+MATALIGN_SOURCE_DIR=matalign-v4a
+PHYLIP_SOURCE_DIR=phylip-3.696/src
+PROGS   =		clique \
+				consense \
+				contml \
+				contrast \
+				dnacomp \
+				dnadist \
+				dnainvar \
+				dnaml \
+				dnamlk \
+				dnamove \
+				dnapars \
+				dnapenny \
+				dolmove \
+				dollop \
+				dolpenny \
+				factor \
+				fitch \
+				gendist \
+				kitsch \
+				mix \
+				move \
+				neighbor \
+				pars \
+				penny \
+				proml \
+				promlk \
+				protdist \
+				protpars \
+				restdist \
+				restml \
+				retree \
+				seqboot \
+				treedist \
+        		drawgram \
+				drawtree \
+                        javajars/libdrawgram.so \
+                        libdrawgram.so libdrawtree.so
+
+.PHONY: all matalign phylip
+
+all: matalign phylip
+
+matalign:
+	cd "${MATALIGN_SOURCE_DIR}" && ${MAKE} && mv matalign-v4a "${R_PACKAGE_DIR}/libs/matalign" && rm -f *.o
+
+phylip:
+	cd "${PHYLIP_SOURCE_DIR}" && cp Makefile.unx Makefile && ${MAKE} all && mv neighbor "${R_PACKAGE_DIR}/libs/neighbor" && rm -f *.o && rm -f $(PROGS)
+
+

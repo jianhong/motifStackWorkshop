@@ -6,15 +6,11 @@ Jianhong Ou <jianhong.ou@duke.edu>; Lihua Julie Zhu <Julie.Zhu@umassmed.edu>
 
 # Workshop Description
 
-A sequence motif is a short pattern for DNA, RNA or amino acid sequence with biological significance.
-The motifs are often represented as a matrix such as position weight matrix (PWM) and visualized as sequence logos.
-The motifStack package is designed for graphic representation of multiple motifs as a phylogenetic tree.
-This tool facilitates the analysis of diversity or conservation of a group of transcription factor binding sites.
-This package has been well downloaded by researchers and cited in various journals. 
-The tool is easy to learn and use. Sample codes will be provided for users to change for their own data. 
-It will take about 50 min to master the package.
+A sequence motif is a short recurring pattern with biological significance such as a DNA recognition sequence for a transcription factor (TF), a mRNA splicing signal, or a functional region of a protein domain. High-throughput experimental approaches and computational tools have been developed to generate large numbers of transcription factor (TF) motifs in several organisms, available in databases such as TRANSFAC, JASPAR, FlyFactorSurvey, and CIS- BP. To facilitate the analysis of binding site diversity/conservation within families of TFs and the evolution of binding sites between different species, we have developed a Bioconductor package motifStack. In this workshop, we will demonstrate the features and flexibility of motifStack for visualizing the alignment of multiple motifs in various styles. In addition, we will illustrate the utility of motifStack for providing insights into families of related motifs using several large collections of homeodomain (HD) DNA binding motifs from human, mouse and fly. Furthermore, we will show how motifStack facilitated the discovery that changing the computational method used to build motifs from the same binding data can lead to artificial segregation of motifs for identical TFs within a motif alignment. The package is available at http://bioconductor.org/packages/motifStack and all datasets are available at https://github.com/jianhong/motifStack.documentation/tree/master/pcmsDatasetALL. 
 
-*Expectation:* After this workshop, participants should be able to plot motif stacks by their own data.
+*Expectation:* Detailed notes and R code will be provided for reproducibility and follow-up exploration.
+After this workshop, participants should be able to apply the learned skills to generate publication-quality
+figures to depict their own motif dataset.
 
 ## Pre-requisites
 
@@ -23,7 +19,7 @@ It will take about 50 min to master the package.
 
 ## Workshop Participation
 
-Users who are interested in graphic representation of multiple motifs. Participants are expected to have motifStack package installed in their own computer or pull the motifStack docker from https://hub.docker.com/r/jianhong/motifstack
+This workshop is for users who are interested in the graphic representation of multiple motifs. Participants are expected to have motifStack package installed in their own computer or pull the motifStack docker from https://hub.docker.com/r/jianhong/motifstack
 
 ## _R_ / _Bioconductor_ packages used
 
@@ -43,23 +39,23 @@ _motifStack_
 
 *Learning goals* 
 
-1. Knowledge the typical workflows for the analysis and visualization of DNA/RNA/amino acid motifs.
+1.	Gain the knowledge of typical workflows for the analysis, generation, alignment and visualization of DNA/RNA/amino acid motifs.
 
-2. Knowledge how to import data from plotting.
+2.	Learn how to visualize the alignment of multiple motifs in various styles using motifStack.
 
-3. Knowledge how to plot motifs as a stack.
+3.	Become aware that experimental approaches, motif generation and alignment tools may affect motif alignment results and visualization.
 
-4. Apply the skills to visualize their own data.
 
 *Learning objectives*
 
-1. Import motifs from database or matrix.
+1.	Learn how to import motifs from databases or a matrices.
 
-2. Plot single motif.
+2.	Learn how to plot a single motif.
 
-3. Plot motifs as a linear tree, radial tree.
+3.	Learn how to plot multiple motifs in various styles such as a linear tree and a radial tree.
 
-4. Understand how to merge motifs and display these motif signatures.
+4.	Understand how to merge similar motifs and display the merged motif as motif signature.
 
-5. Understand how to use various color options to highlight different motif features.
+5.	Understand how to use various color options to highlight different motif features.
 
+6.	Understand how to set different distance cutoffs to group related motifs.
