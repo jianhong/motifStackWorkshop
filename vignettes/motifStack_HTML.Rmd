@@ -36,38 +36,35 @@ extdata <- system.file("extdata", package = "motifStackWorkshop")
 
 ## Introduction
 
-A sequence motif is a short sequence conservation in multiple amino acid or nucleic acid sequences
+A sequence motif is a short sequence conserved in multiple amino acid or nucleic acid sequences
 with biological significance such as DNA binding sites, where transcription factors (TFs) bind and catalytic sites in enzymes.
-Many algorithms have been developed to discover and analyze motifs from DNA, 
-RNA or protein sequences, which can be represented as position count matrix (PCM), position frequency matrix (PFM) 
+Motifs are often represented as position count matrix (PCM), position frequency matrix (PFM) 
 or PWM (PWM) (reviewed in [@das2007survey;@sandve2007improved;@tompa2005assessing]). 
-In turn, sequence logos, based on information theory or probability theory, 
-are used as a graphical representation of sequence motifs by reflecting the frequencies 
+Sequence logos, based on information theory or probability theory, 
+have been used as a graphical representation of sequence motifs to depict the frequencies 
 of bases or amino acids at each conserved position[@schneider1990sequence;@schneider1996reading;@schneider2001strong;@crooks2004weblogo;@workman2005enologos].
 
-High-throughput experimental approaches have been developed to generate motifs for large number of TFs in several organisms. 
-The experimental method used to measure binding motifs including protein binding microarray (PBM)[@newburger2008uniprobe], bacterial one-hybrid (B1H)[@meng2005bacterial], systematic evolution of ligands by exponential enrichment (SELEX)[@ellington1990vitro;@tuerk1990systematic], High-Throughput (HT) SELEX[@hoinka2015large], selective microfluidics-based ligand enrichment followed by sequencing (SMiLE-seq)[@isakova2017smile], and so on. 
-In downstream, different computational methods have been used to construct the motifs. 
-MEME Suite[@bailey2009meme] is widely used tool for motifs construction for B1H and SELEX. 
-Seed-and-Wobble (SW)[@badis2009diversity], Dream5[@weirauch2013evaluation] and BEEML[@zhao2011quantitative] are used for PBM data analysis.
+High-throughput experimental approaches have been developed to identify binding sequences for a large number of TFs in several organisms. 
+The experimental methods include protein binding microarray (PBM)[@newburger2008uniprobe], bacterial one-hybrid (B1H)[@meng2005bacterial], systematic evolution of ligands by exponential enrichment (SELEX)[@ellington1990vitro;@tuerk1990systematic], High-Throughput (HT) SELEX[@hoinka2015large], and selective microfluidics-based ligand enrichment followed by sequencing (SMiLE-seq)[@isakova2017smile]. 
+Several algorithms have been developed to discover motifs from the binding sequences, identified by the above experimental methods. For example, MEME Suite[@bailey2009meme] has been widely used to construct motifs for B1H and SELEX data, while Seed-and-Wobble (SW)[@badis2009diversity], Dream5[@weirauch2013evaluation], and BEEML[@zhao2011quantitative] have been used to generate motifs for PBM data.
 
-There are many tools have been developed to represent the sequence motif as individual sequence logo, such as weblogo[@crooks2004weblogo], seqlogo[@bembom1seqlogo]. To facilitate comparison of motifs, more tools have been 
-developed for motif alignment and clustering such as Tomtom[@gupta2007quantifying], MatAlign[@zhao2012conserved] and STAMP[@mahony2007stamp]. However, those tools are lacking flexibility in dispalying the similarities or differences among 
-different groups of motifs.
+Visualization tools have been developed for representing a sequence motif as individual sequence logo, such as weblogo[@crooks2004weblogo]and seqlogo[@bembom1seqlogo]. To facilitate the comparison of multiple motifs, several motif alignment and clustering tools 
+have been developed such as Tomtom[@gupta2007quantifying], MatAlign[@zhao2012conserved], and STAMP[@mahony2007stamp]. However, these tools are lacking flexibility in dispalying the similarities or differences among motifs.
 
-The _motifStack_ package[@ou2018motifstack] is designed for graphic representation of multiple motifs for their similarities or differences.
-It provides the flexibility for users to customize the graphic parameters such as the font family, colors, symbols, and highlight markers.
+The _motifStack_ package[@ou2018motifstack] is designed for for the graphic representation of multiple motifs with their similarities or distances depicted. It provides the flexibility for users to customize the clustering and graphic parameters such as distance cutoff, the font family, colors, symbols, layout styles, and ways to highlight different regions or branches.
+
+In this workshop, we will demonstrate the features and flexibility of _motifStack_ for visualizing the alignment of multiple motifs in various styles. In addition, we will illustrate the utility of _motifStack_ for providing insights into families of related motifs using several large collections of homeodomain (HD) DNA binding motifs from human, mouse and fly. Furthermore, we will show how _motifStack_ facilitated the discovery that changing the computational method used to build motifs from the same binding data can lead to artificial segregation of motifs for identical TFs using  the same motif alignment method.
 
 ## Installation
 
-_BiocManager_ is used to install stable version of _motifStack_.
+_BiocManager_ is used to install the released version of _motifStack_.
 
 ```{r eval=FALSE}
 library(BiocManager)
 install("motifStack")
 ```
 
-To install newest development version of _motifStack_, please try
+To install the development version of _motifStack_, please try
 
 ```{r eval=FALSE}
 install("jianhong/motifStack")
@@ -77,18 +74,18 @@ install("jianhong/motifStack")
 packageVersion("motifStack")
 ```
 
-Please note that start from version 1.28.0, _motifStack_ does not require ghostscript but cairo (>= 1.6).
-If version number is smaller than 1.28.0, you will need ghostscript. The full path to the executable must be available 
-for R session.
+Please note that starting from version 1.28.0, _motifStack_ requires cario (>=1.6) instead of ghostscript which is for a lower version of _motifStack_. The `capabilities` function could be used to check capablilities of cario for current R session.   
+If _motifStack_ version number is smaller than 1.28.0, the full path to the executable ghostscript must be available for R session.
 
-In this tutorial, version number greater than 1.29.4 is required.
+
+In this tutorial, we will illustrate the functionalities of _motifStack_ available in version >=1.29.4.
 
 ## Inputs of _motifStack_
 
-The inputs of _motifStack_ are one or more motifs represented as PCM or PFM. The PFM format motifs are available in
+The inputs of _motifStack_ are one or more motifs represented as PCM or PFM. Motifs in PFM format are available in
 most of the motif databases such as TRANSFAC[@wingender2000transfac], JASPAR[@sandelin2004jaspar], CIS-BP[@weirauch2014determination] and HOCOMOCO[@kulakovskiy2017hocomoco]. More databases could be found at http://meme-suite.org/db/motifs.
 
-`MotifDb` package is a collection of DNA-binding sequence motifs in PFM format. 9933 PFMs were collected from 11 sources: cisbp_1.02[@weirauch2014determination], FlyFactorSurvey[@zhu2010flyfactorsurvey], HOCOMOCO[@kulakovskiy2017hocomoco], HOMER[@heinz2010simple], hPDI[@xie2009hpdi], JASPAR[@sandelin2004jaspar],
+In addition, `MotifDb` package contains a collection of DNA-binding sequence motifs in PFM format. 9933 PFMs were collected from 11 sources: cisbp_1.02[@weirauch2014determination], FlyFactorSurvey[@zhu2010flyfactorsurvey], HOCOMOCO[@kulakovskiy2017hocomoco], HOMER[@heinz2010simple], hPDI[@xie2009hpdi], JASPAR[@sandelin2004jaspar],
 Jolma2013[@jolma2013dna], ScerTF[@spivak2011scertf], stamlab[@neph2012circuitry], SwissRegulon[@pachkov2006swissregulon] and UniPROBE[@newburger2008uniprobe].
 
 ```{r}
@@ -97,24 +94,24 @@ MotifDb[1]
 MotifDb[[1]]
 ```
 
-`plotMotifLogo` function be used to plot sequence logo for matrix in PFM format (Figure \ref{fig:plotMotifLogo}). 
+The `plotMotifLogo` function can be used to plot sequence logo for motifs in PFM format (Figure \ref{fig:plotMotifLogo}). 
 As default, the nucleotides in a sequence logo will be drawn proportional to their information content (IC)[@workman2005enologos].
-```{r fig.cap="\\label{fig:plotMotifLogo}Plot sequence logo for matrix in PFM format."}
+```{r fig.cap="\\label{fig:plotMotifLogo}Plot sequence logo for motif in PFM format."}
 library(motifStack)
 plotMotifLogo(MotifDb[[1]])
 ```
 
-The PFM can be formated as an `pfm` object and `pfm` object is the prefered format for _motifStack_ to plot (Figure \ref{fig:plotMotifPFM}).
+A PFM can be formated as an `pfm` object which is the preferred format for _motifStack_ (Figure \ref{fig:plotMotifPFM}).
 
-```{r fig.cap="\\label{fig:plotMotifPFM}Plot sequence logo for `pfm` object."}
+```{r fig.cap="\\label{fig:plotMotifPFM}Plot sequence logo for a `pfm` object."}
 matrix.bin <- query(MotifDb, "bin_SANGER")
 motif <- new("pfm", mat=matrix.bin[[1]], name=names(matrix.bin)[1])
 motifStack(motif)
 ```
 
-The `pfm` or `pcm` object can be created by PFM or PCM (Figure \ref{fig:plotMotifPCM}).
+Similary, a PCM can be converted to a `pcm` object easily  (Figure \ref{fig:plotMotifPCM}).
 
-```{r fig.cap="\\label{fig:plotMotifPCM}Plot sequence logo for `pcm` object."}
+```{r fig.cap="\\label{fig:plotMotifPCM}Plot sequence logo for a `pcm` object."}
 path <- system.file("extdata", package = "motifStack")
 pcm <- read.table(file.path(path, "bin_SOLEXA.pcm"))
 pcm
@@ -124,7 +121,7 @@ motif <- new("pcm", mat=as.matrix(pcm), name="bin_SOLEXA")
 plot(motif)
 ```
 
-`importMatrix` function can import the motifs into `pcm` or `pfm` object from files exported by TRANSFAC[@wingender2000transfac], JASPAR[@sandelin2004jaspar] and CIS-BP[@weirauch2014determination].
+In addition, `importMatrix` function can be used to import the motifs into a `pcm` or `pfm` object from files exported by TRANSFAC[@wingender2000transfac], JASPAR[@sandelin2004jaspar] or CIS-BP[@weirauch2014determination].
 
 ```{r,fig.height=8,fig.cap="\\label{fig:importMatrix}Plot sequence logo for data imported by `importMatrix`"}
 motifs <- importMatrix(dir(path, "*.pcm", full.names = TRUE))
@@ -137,16 +134,15 @@ motifStack(motifs)
 _motifStack_ can be used to plot DNA/RNA sequence logo, affinity logo and amino acid sequence log. 
 It provides the flexibility for users to customize the graphic parameters such as 
 the font family, symbol colors and markers. 
-Different from most of the sequence logo plotting tools, _motifStack_ does not pre-define the path 
+Different from most of the sequence logo plotting tools, _motifStack_ does not need to pre-define the path 
 for plotting. 
-It depends on grImport/2[@murrell2009importing] package to import fonts into a path. 
-This provides the power of _motifStack_ more flexibility to plot the logo.
+It depends on grImport/2[@murrell2009importing] package to import fonts into a path, which provides the power of _motifStack_ more flexibility.
 
 ## Plot a DNA/RNA/amino acid sequence logo
 
-To plot a RNA sequence logo, change the rowname of the matrix from "T" to "U" (Figure \ref{fig:plotRNAmotif}).
+To plot an RNA sequence logo, simply change the rowname of the matrix from "T" to "U" (Figure \ref{fig:plotRNAmotif}).
 
-```{r fig.cap="\\label{fig:plotRNAmotif}Plot RNA sequence logo."}
+```{r fig.cap="\\label{fig:plotRNAmotif}Plot an RNA sequence logo."}
 rna <- pcm
 rownames(rna)[4] <- "U"
 RNA_motif <- new("pcm", mat=as.matrix(rna), name="RNA_motif")
@@ -164,9 +160,9 @@ protein_motif<-new("pfm", mat=protein, name="CAP",
 plot(protein_motif)
 ```
 
-_motifStack_ can also be used to plot other logos (Figure \ref{fig:plotANYlogo}).
+_motifStack_ can also be used to plot other types of logos (Figure \ref{fig:plotANYlogo}).
 
-```{r fig.cap="\\label{fig:plotANYlogo}Plot logo of other types."}
+```{r fig.cap="\\label{fig:plotANYlogo}Plot a user-defined logo."}
 m <- matrix(0, nrow = 10, ncol = 10, 
             dimnames = list(strsplit("motifStack", "")[[1]],
                             strsplit("motifStack", "")[[1]]))
@@ -183,13 +179,13 @@ plot(motif, font="mono,Courier", fontface="plain")
 ```
 
 
-### Plot sequence logo with highlight markers
+### Plot sequence logo with specified regions highlighted using the markers slot
 
-`markers` slot of `pfm` or `pcm` object can be assigned by a list of `marker` objects. 
+The `markers` slot of a `pfm` or `pcm` object can be assigned by a list of `marker` objects. 
 There are three type of markers, "rect", "line" and "text". 
 If `markers` slot is assigned, markers can be plotted (Figure \ref{fig:withMarkers}).
 
-```{r fig.cap="\\label{fig:withMarkers}Plot sequence logo with highlight markers."}
+```{r fig.cap="\\label{fig:withMarkers}Plot a sequence logo with selected regions highlighted."}
 markerRect <- new("marker", type="rect", start=6, stop=7, 
                   gp=gpar(lty=2, fill=NA, col="orange", lwd=3))
 markerRect2 <- new("marker", type="rect", start=2, 
@@ -206,7 +202,7 @@ plot(motif)
 
 ## Plot motifs with ggplot2
 
-Sequence logo could be plotted by `geom_motif` function which is compatible with _ggplot2_[@wickham2016ggplot2] (Figure \ref{fig:ggplot2}).
+Sequence logo can also be plotted by `geom_motif` function which is compatible with _ggplot2_[@wickham2016ggplot2] (Figure \ref{fig:ggplot2}).
 
 ```{r,fig.height=8,fig.cap="\\label{fig:ggplot2}Plot sequence logo with ggplot2."}
 len <- length(motifs)
@@ -229,7 +225,7 @@ different species. There are many functions in _motifStack_ such as `plotMotifLo
 `motifSignature` for generating motif signatures by merging similar motifs. 
 To make it easy to use, we created one workflow function called `motifStack`, 
 which can be used to draw a single DNA, RNA or amino acid motif as a sequence logo,
-as well as align motifs, generate motif signatures and plot aligned motifs as a stack,
+as well as to align motifs, generate motif signatures and plot aligned motifs as a stack,
 phylogeny tree, radial tree or cloud of sequence logos.
 
 To align motifs, `DNAmotifAlignment` function implements Ungapped	Smith–Waterman	(local)	alignment 
@@ -252,8 +248,8 @@ motifStack(motifs, layout = "tree")
 motifStack(motifs, layout="phylog", f.phylog=.15, f.logo=0.25)
 ```
 
-The layout of 'phylog' has the capability to plot more motifs comparing to layout of 'tree'.
-These plots allow small sets of motifs to be readily compared. 
+Even though the layout of 'phylog' allows more motifs to be plotted comparing to the layout of 'tree',
+both layouts only allow small sets of motifs to be readily compared. 
 However, moderate throughput analysis of TFs has generated 100s to 1000s of motifs, 
 which make the visualization of their relationships more challenging. 
 To reduce the total number of motifs depicted, clusters of highly similar motifs can be merged 
@@ -339,7 +335,7 @@ motifCloud(motifSig, scale=c(6, .5), layout="cloud")
 
 ### Plot sequence logo circos
 
-The sequence logo clouds will loose the cluster information. 
+The sequence logo cloud will loose the cluster information. 
 Plotting motifs as sequence logo circos is a good solution to visualize motif signatures with dendrogram (Figure \ref{fig:plotMotifStackWithRadialPhylog}).
 
 ```{r,fig.height=6, fig.cap="\\label{fig:plotMotifStackWithRadialPhylog}Plot sequence logo circos."}
@@ -377,11 +373,11 @@ motifCircos(phylog=phylog, pfms=pfms, pfms2=sig,
 ## Plot fly data from different experimental methods
 
 Following scripts will show how _motifStack_ facilitated the discovery that changing the experiemntal method used to build motifs from the same binding data can lead to artificial segregation of motifs for identical TFs within a motif alignment. 
-MatAlign[@zhao2012conserved] was downloaded from http://stormo.wustl.edu/MatAlign/ and neighbor is a tool of [phylip](http://evolution.genetics.washington.edu/phylip.html). MatAlign2tree.pl is a perl script to run MatAlign and 
+MatAlign[@zhao2012conserved] was downloaded from http://stormo.wustl.edu/MatAlign/ and neighbor is a tool of [phylip](http://evolution.genetics.washington.edu/phylip.html). MatAlign2tree.pl is a perl script for running MatAlign and 
 neighbor to get the neighbor-joint phylogenetic tree for given motifs. 
 Compare to STAMP, MatAlign alignment method is superior for discriminating between the closely related motifs[@ou2018motifstack]. 
 
-Here we clustered motifs for a smaller set of fly Homeodomain(HDs) that were determined using four different experimental methods to measure DNA binding specificity, B1H, HT-SELEX, SMiLE-seq and PBM, to confirm that the motif generation method can impact clustering. As it shown in Figre \ref{fig:Flydata} B1H motifs from different lab tend to cluster with each other (motifs 1,2, 37,38, 41-113, 132,133, 136-162, 166-171, 180-195, 206-236, 242,243) compare to PBM data (motifs 'eve' in blue). PMB data (motif 5-13, 18-21, 23-26) tend to have lower IC, which may be introduced by computation methods[@ou2018motifstack]. HT-SELEX tend to have dimer (motif labels in red). 
+Here we clustered motifs for a smaller set of fly HDs that were determined using four different experimental methods to measure DNA binding specificity, B1H, HT-SELEX, SMiLE-seq and PBM, to confirm that the motif generation method can impact clustering. As it shown in Figre \ref{fig:Flydata} B1H motifs from different lab tend to cluster with each other (motifs 1,2, 37,38, 41-113, 132,133, 136-162, 166-171, 180-195, 206-236, 242,243) compared to PBM data (motifs 'eve' in blue). PMB data (motif 5-13, 18-21, 23-26) tend to have lower IC, which may be introduced by computation methods[@ou2018motifstack]. HT-SELEX tend to have dimer (motif labels in red). 
 
 ```{r, fig.width=12, fig.height=12, fig.cap="\\label{fig:Flydata}Fly data from different methods."}
 path <- system.file('libs', package = 'motifStackWorkshop')
