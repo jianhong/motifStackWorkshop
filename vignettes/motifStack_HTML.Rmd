@@ -263,7 +263,7 @@ motifStack(motifs, layout = "tree")
 motifStack(motifs, layout="phylog", f.phylog=.15, f.logo=0.25)
 ```
 
-Even though the layout of 'phylog' allows more motifs to be plotted comparing to the layout of 'tree',
+Even though the layout of "phylog" allows more motifs to be plotted comparing to the layout of "tree",
 both layouts only allow small sets of motifs to be readily compared. 
 However, moderate throughput analysis of TFs has generated 100s to 1000s of motifs, 
 which make the visualization of their relationships more challenging. 
