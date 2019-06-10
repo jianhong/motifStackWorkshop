@@ -92,8 +92,12 @@ packageVersion("motifStack")
 
 Please note that starting from version 1.28.0, _motifStack_ requires cario (>=1.6) instead of ghostscript which is for a lower version of _motifStack_. The `capabilities` function could be used to check capablilities of cario for current R session. If _motifStack_ version number is smaller than 1.28.0, the full path to the executable ghostscript must be available for R session.
 
-
 In this tutorial, we will illustrate the functionalities of _motifStack_ available in version >=1.29.4.
+
+```{r}
+capabilities()["cairo"]
+```
+
 
 ## Inputs of _motifStack_
 
