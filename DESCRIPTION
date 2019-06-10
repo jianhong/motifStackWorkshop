@@ -10,7 +10,7 @@ Author: Jianhong Ou and Lihua Julie Zhu
 Maintainer: Jianhong Ou <jianhong.ou@duke.edu>
 Depends: R (>= 3.5.0), methods, motifStack (>= 1.29.4)
 Imports: graphics, utils
-Suggests: RUnit, BiocGenerics, MotifDb, knitr, MotIV, RColorBrewer, ggplot2
+Suggests: RUnit, BiocGenerics, MotifDb, knitr, MotIV, RColorBrewer, ggplot2, bookdown, kableExtra
 biocViews: SequenceMatching, Visualization, Sequencing, Microarray, Alignment, ChIPchip, ChIPSeq, MotifAnnotation, DataImport
 Description: The motifStackWorkshop package is a package for Bioc2019 to help people learn to use motifStack to represent multiple motifs with different similarity scores in one canvas.
 License: GPL (>= 2)
