@@ -38,7 +38,7 @@ extdata <- system.file("extdata", package = "motifStackWorkshop")
 
 A sequence motif is a short sequence conserved in multiple amino acid or nucleic acid sequences
 with biological significance such as DNA binding sites, where transcription factors (TFs) bind and catalytic sites in enzymes.
-Motifs are often represented as position count matrix (PCM)(Table \ref{motifstackfig:PCM}), position frequency matrix (PFM)(Table \ref{motifstackfig:PFM})
+Motifs are often represented as position count matrix (PCM)(Table \ref{motifstacktbl:PCM}), position frequency matrix (PFM)(Table \ref{motifstacktbl:PFM})
 or position weight matrix (PWM) (reviewed in [@das2007survey;@sandve2007improved;@tompa2005assessing]). 
 Sequence logos, based on information theory or probability theory, 
 have been used as a graphical representation of sequence motifs to depict the frequencies 
@@ -49,14 +49,14 @@ pcm <- c(1, 1, 23, 22, 1, 2, 19, 16, 0, 0, 2, 4,
          2, 4, 0, 1, 19, 15, 1, 2, 0, 0, 1, 2)
 pcm <- matrix(pcm, nrow = 4, byrow = TRUE)
 row.names(pcm) <- c("A", "C", "G", "T")
-kable(pcm, caption = "\\label{motifstackfig:PCM}Sample of PCM. Each row represents the counts of A, C, G and T, while each column is the counts for that nucleotide position.")
+kable(pcm, caption = "\\label{motifstacktbl:PCM}Sample of PCM. Each row represents the counts of A, C, G and T, while each column is the counts for that nucleotide position.")
 ```
 
 
 ```{r, echo=FALSE}
 pfm <- t(t(pcm)/colSums(pcm))
 kable(pfm, digits=2,
-      caption = "\\label{motifstackfig:PFM}Sample of PFM. Each row represents the frequency of A, C, G and T, while each column is the frequency for that nucleotide position.")
+      caption = "\\label{motifstacktbl:PFM}Sample of PFM. Each row represents the frequency of A, C, G and T, while each column is the frequency for that nucleotide position.")
 ```
 
 
