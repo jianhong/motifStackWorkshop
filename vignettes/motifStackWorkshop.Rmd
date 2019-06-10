@@ -6,7 +6,7 @@ package: "`r packageVersion('motifStackWorkshop')`"
 bibliography: "`r system.file('vignettes', 'ref.bib', package = 'motifStackWorkshop')`"
 csl: "`r system.file('vignettes', 'nature.csl', package = 'motifStackWorkshop')`"
 vignette: >
-  %\VignetteIndexEntry{motifStack_workshop}
+  %\VignetteIndexEntry{motifStackWorkshop}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 output: 
