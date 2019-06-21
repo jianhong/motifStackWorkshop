@@ -10,14 +10,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 output: 
-  bookdown::pdf_document2:
-    toc: yes
-    toc_depth: 4
-    fig_caption: true
   bookdown::html_document2:
     theme: simplex
     toc: true
     toc_float: true
+    toc_depth: 4
+    fig_caption: true
+  bookdown::pdf_document2:
+    toc: yes
     toc_depth: 4
     fig_caption: true
 ---

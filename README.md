@@ -19,7 +19,10 @@ figures to depict their own motif dataset.
 
 ## Workshop Participation
 
-This workshop is for users who are interested in the graphic representation of multiple motifs. Participants are expected to have motifStack package installed in their own computer or pull the motifStack docker from https://hub.docker.com/r/jianhong/motifstack
+This workshop is for users who are interested in the basic understanding of motif, motif
+generation approaches, motif comparison and alignment methods, and the graphic
+representation of multiple motifs. Participants are expected to have motifStack package
+installed in their own computer or pull the motifStack docker from https://hub.docker.com/r/jianhong/motifstack
 
 ## _R_ / _Bioconductor_ packages used
 
@@ -30,27 +33,27 @@ _motifStack_
 
 | Activity                     | Time |
 |------------------------------|------|
-| Introduction of motifStack   | 10m  |
+| Overview and introduction of motifStack   | 10m  |
 | Quick start of motifStack    | 5m   |
-| Best Practices               | 30m  |
+| Demo and hands on exercise              | 30m  |
 | Question & Answer            | 5m   |
 
 # Workshop goals and objectives
 
 *Learning goals* 
 
-1.	Gain the knowledge of typical workflows for the analysis, generation, alignment and visualization of DNA/RNA/amino acid motifs.
+1.	Gain the knowledge of typical workflows for the generation, representation, alignment and visualization of DNA/RNA/amino acid motifs.
 
 2.	Learn how to visualize the alignment of multiple motifs in various styles using motifStack.
 
-3.	Become aware that experimental approaches, motif generation and alignment tools may affect motif alignment results and visualization.
+3.	Become aware that experimental approaches, motif generation and alignment algorithms may affect motif alignment results and visualization.
 
 
 *Learning objectives*
 
-1.	Learn how to import motifs from databases or a matrices.
+1.	Learn how to import motifs from databases or a matrix.
 
-2.	Learn how to plot a single motif.
+2.	Learn how to plot a single motif for DNA/RNA/AA.
 
 3.	Learn how to plot multiple motifs in various styles such as a linear tree and a radial tree.
 
